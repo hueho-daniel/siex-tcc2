@@ -9,7 +9,7 @@ class ProgramsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$programs = Program::all();
+		$programs = $this->search('Program')->paginate(20);
 
 		$this->layout->content = View::make('programs.index', compact('programs'));
 	}
@@ -31,16 +31,26 @@ class ProgramsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Program::$rules);
-
-		if ($validator->fails())
+		$data = array_merge(Input::except('how'), [ 'user_id' => Auth::user()->id ]);
+		$how = Input::get('how');
+		if (!$data['financial_aid'])
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			$data['financial_aid'] = null;
+		}
+		
+		if ($how === 'send')
+		{
+			$data = array_merge($data, [ 'complete' => true ]);
+			$validator = Validator::make($data, Program::$rules);
+
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			}
 		}
 
-		Program::create($data);
-
-		return Redirect::route('programs.index');
+		$program = Program::create($data);
+		return Redirect::route('programs.show', $program->id)->with('success', 'Criado com sucesso!');
 	}
 
 	/**
@@ -52,6 +62,11 @@ class ProgramsController extends \BaseController {
 	public function show($id)
 	{
 		$program = Program::findOrFail($id);
+
+		if(!$program->complete && $program->user_id === Auth::user()->id)
+		{
+			return Redirect::route('programs.edit', $program->id);
+		}
 
 		$this->layout->content = View::make('programs.show', compact('program'));
 	}
@@ -66,6 +81,11 @@ class ProgramsController extends \BaseController {
 	{
 		$program = Program::find($id);
 
+		if($program->complete || $program->user_id !== Auth::user()->id)
+		{
+			return Redirect::route('programs.show', $program->id)->with('message', 'Edição não autorizada!');
+		}
+
 		$this->layout->content = View::make('programs.edit', compact('program'));
 	}
 
@@ -79,16 +99,33 @@ class ProgramsController extends \BaseController {
 	{
 		$program = Program::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Program::$rules);
-
-		if ($validator->fails())
+		if($program->complete || $program->user_id !== Auth::user()->id)
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::route('programs.show', $program->id)->with('message', 'Edição não autorizada!');
 		}
 
-		$program->update($data);
+		$data = array_merge(Input::except('how'));
+		$how = Input::get('how');
+		if (!$data['financial_aid'])
+		{
+			$data['financial_aid'] = null;
+		}
+		
+		if ($how === 'send')
+		{
+			$data = array_merge($data, [ 'complete' => true ]);
+			$validator = Validator::make($data, Program::$rules);
 
-		return Redirect::route('programs.index');
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			}
+		}
+
+		//dd($data);
+
+		$program->update($data);
+		return Redirect::route('programs.show', $program->id)->with('success', 'Salvo com sucesso!');;
 	}
 
 	/**

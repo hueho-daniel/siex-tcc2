@@ -1,7 +1,7 @@
 <?php
 
 class Program extends \Eloquent {
-	use HasOwner, Organizable;
+	use CommonScopes, HasOwner, Organizable;
 
 	// Add your validation rules here
 	public static $rules = [
@@ -9,7 +9,7 @@ class Program extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $guarded = [];
 
 	public function project()
 	{

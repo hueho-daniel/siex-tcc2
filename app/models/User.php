@@ -1,6 +1,13 @@
 <?php
 
-class User extends \Eloquent {
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
+
+class User extends \Eloquent implements UserInterface, RemindableInterface {
+
+	use UserTrait, RemindableTrait;
 
 	// Add your validation rules here
 	public static $rules = [
@@ -8,7 +15,7 @@ class User extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $guarded = [];
 
 	public function projects() {
 		return $this->hasMany("Project");
@@ -18,11 +25,11 @@ class User extends \Eloquent {
 		return $this->hasMany("Program");
 	}
 	
-	public function projects() {
+	public function events() {
 		return $this->hasMany("Event");
 	}
 
-	public function programs() {
+	public function courses() {
 		return $this->hasMany("Course");
 	}
 
@@ -30,4 +37,28 @@ class User extends \Eloquent {
 		return $this->hasMany("Coordinator");
 	}
 
+	// Acessores de conveniência
+	public function getContactNameAttribute() {
+		return $this->name;
+	}
+
+	public function getContactPhoneAttribute() {
+		return $this->phone;
+	}
+
+	public function getContactFaxAttribute() {
+		return $this->fax;
+	}
+
+	public function getContactCelAttribute() {
+		return $this->cel;
+	}
+
+	public function getContactEmailAttribute() {
+		return $this->email;
+	}
+
+	public function getContactSiteAttribute() {
+		return $this->site;
+	}
 }

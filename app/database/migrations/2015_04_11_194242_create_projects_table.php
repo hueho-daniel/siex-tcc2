@@ -17,34 +17,34 @@ class CreateProjectsTable extends Migration {
 			$table->increments('id');
 
 			// Dados iniciais			
-			$table->date('recorded_at');
-			$table->string('status')->default("Cadastrada");
+			$table->date('recorded_at')->nullable();
+			$table->string('status')->default("Cadastrada")->nullable();
 
 			// Dados do contato
-			$table->string('contact_name');
-			$table->string('contact_phone');
-			$table->string('contact_fax');
-			$table->string('contact_cel');
-			$table->string('contact_email');
-			$table->string('contact_site');
+			$table->string('contact_name')->nullable();
+			$table->string('contact_phone')->nullable();
+			$table->string('contact_fax')->nullable();
+			$table->string('contact_cel')->nullable();
+			$table->string('contact_email')->nullable();
+			$table->string('contact_site')->nullable();
 
 			// Dados do projeto
-			$table->string('title');
-			$table->string('theme');
-			$table->longText('description');
-			$table->string('file_name');
-			$table->integer('student_count');
-			$table->integer('workload');
-			$table->string('campus');
-			$table->integer('estimated_audience');
-			$table->string('action')->default("Curricular");
-			$table->decimal('financial_aid');
+			$table->string('title')->nullable();
+			$table->string('theme')->nullable();
+			$table->longText('description')->nullable();
+			$table->string('file_name')->nullable();
+			$table->integer('student_count')->nullable();
+			$table->integer('workload')->nullable();
+			$table->string('campus')->nullable();
+			$table->integer('estimated_audience')->nullable();
+			$table->string('action')->default("Curricular")->nullable();
+			$table->decimal('financial_aid')->nullable();
 
 			// Tabelas associadas
-			// $table->integer('program_id');
+			$table->integer('program_id');
 			// $table->foreign('program_id')->references('id')->on('programs');
 
-			// $table->integer('user_id');
+			$table->integer('user_id');
 			// $table->foreign('user_id')->references('id')->on('users');
 
 			// Dados de uso interno

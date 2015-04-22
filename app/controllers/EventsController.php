@@ -9,7 +9,7 @@ class EventsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$events = Event::all();
+		$events = $this->search('Event')->paginate(20);
 
 		$this->layout->content = View::make('events.index', compact('events'));
 	}

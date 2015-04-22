@@ -17,4 +17,44 @@ class BaseController extends Controller {
 		}
 	}
 
+	/**
+	 * Realiza uma busca para determinada tabela
+	 *
+	 * @return array
+	 */
+	protected function search($model)
+	{
+		$title = Input::get('title');
+		$theme = Input::get('theme');
+		$only_own = Input::get('only_own');
+
+		$result = $model::complete(true);
+
+		if ($title !== "")
+		{
+			$result = $result->where('title', 'ilike', "%{$title}%");
+		}
+
+		if (!empty($theme) && $theme !== "Todas")
+		{
+			$result = $result->where('theme', '=', "{$theme}");
+		}
+
+		if ($only_own)
+		{
+			$result = $result->where('user_id', '=', Auth::user()->id);
+		}
+
+		return $result;
+	}
+
+	public function __construct()
+	{
+		// Logar usuário padrão automaticamente
+		$this->beforeFilter(function(){
+			$user = User::find(1);
+			Auth::login($user);
+		});
+	}
+
 }

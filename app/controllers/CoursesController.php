@@ -9,7 +9,7 @@ class CoursesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$courses = Course::all();
+		$courses = $this->search('Course')->paginate(20);
 
 		$this->layout->content = View::make('courses.index', compact('courses'));
 	}

@@ -1,6 +1,8 @@
 <h1>Programas</h1>
 
 <div class="col-md-12">
+  @include("general.search")
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,11 +15,11 @@
     <tbody>
       @forelse($programs as $program)
         <tr>
-          <td>{{ $program->title }}</td>
-          <td>{{ $program->theme }}</td>
-          <td>{{ $program->campus }}</td>
+          <td>{{{ $program->title }}}</td>
+          <td>{{{ $program->theme }}}</td>
+          <td>{{{ $program->campus }}}</td>
           <td>
-            <a href="{{ URL::route('programs.show', [ 'resource' => $program->id ]) }}">
+            <a href="{{{ URL::route('programs.show', [ 'resource' => $program->id ]) }}}">
               <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
             </a>
           </td>
@@ -29,4 +31,6 @@
       @endforelse
     </tbody>
   </table>
+
+  {{{ $programs->links() }}}
 </div>

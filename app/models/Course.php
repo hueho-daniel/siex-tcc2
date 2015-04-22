@@ -1,7 +1,7 @@
 <?php
 
 class Course extends \Eloquent {
-	use HasOwner, Coordinable;
+	use CommonScopes, HasOwner, Coordinable;
 
 	// Add your validation rules here
 	public static $rules = [
@@ -9,6 +9,6 @@ class Course extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+  protected $guarded = [];
 
 }

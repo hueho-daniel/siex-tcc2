@@ -9,7 +9,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projects = Project::all();
+		$projects = $this->search('Project')->paginate(20);
 
 		$this->layout->content = View::make('projects.index', compact('projects'));
 	}

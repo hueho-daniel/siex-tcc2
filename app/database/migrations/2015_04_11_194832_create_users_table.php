@@ -17,16 +17,17 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 
 			// Dados de login
-			$table->string("email");
-			$table->string("password");
+			$table->string('email');
+			$table->string('password');
+			$table->string('remember_token')->nullable();
 
 			// Dados do usuário
 			$table->string('name');
-			$table->string('phone');
-			$table->string('fax');
-			$table->string('cel');
-			$table->string('site');
-			$table->string('cpf');
+			$table->string('phone')->nullable();
+			$table->string('fax')->nullable();
+			$table->string('cel')->nullable();
+			$table->string('site')->nullable();
+			$table->string('cpf')->nullable();
 
 			$table->timestamps();
 		});

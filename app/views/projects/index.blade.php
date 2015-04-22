@@ -1,6 +1,8 @@
 <h1>Projetos</h1>
 
 <div class="col-md-12">
+  @include("general.search")
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,16 +16,16 @@
     <tbody>
       @forelse($projects as $project)
         <tr>
-          <td>{{ $project->title }}</td>
-          <td>{{ $project->theme }}</td>
-          <td>{{ $project->campus }}</td>
+          <td>{{{ $project->title }}}</td>
+          <td>{{{ $project->theme }}}</td>
+          <td>{{{ $project->campus }}}</td>
           <td>
-            <a href="{{ URL::route('programs.show', [ $project->program->id ]) }}">
-              {{ $project->program->title }}
+            <a href="{{{ URL::route('programs.show', [ $project->program->id ]) }}}">
+              {{{ $project->program->title }}}
             </a>
           </td>
           <td>
-            <a href="{{ URL::route('projects.show', [ $project->id ]) }}">
+            <a href="{{{ URL::route('projects.show', [ $project->id ]) }}}">
               <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
             </a>
           </td>
@@ -35,4 +37,6 @@
       @endforelse
     </tbody>
   </table>
+
+  {{{ $projects->links() }}}
 </div>

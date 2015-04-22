@@ -1,5 +1,5 @@
+/* Seção principal*/
 body {
-  padding-top: 70px;
   padding-bottom: 30px;
 }
 .theme-dropdown .dropdown-menu {
@@ -14,6 +14,7 @@ body {
   width: auto;
 }
 
+/* Padrão de cores da navbar*/
 .navbar-default {
   background-color: #215a36 !important;
   border-color: #123c22;
@@ -85,5 +86,11 @@ body {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ffffff;
     background-color: #123c22;
+  }
+}
+
+@media (min-width: 980px) {
+  body {
+    padding-top: 70px;
   }
 }

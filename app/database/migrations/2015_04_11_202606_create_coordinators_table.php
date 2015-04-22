@@ -20,13 +20,13 @@ class CreateCoordinatorsTable extends Migration {
 			$table->morphs('coordinable');
 
 			// Dados do usuário
-			$table->string('name');
-			$table->string('rf');
-			$table->string('cpf');
-			$table->string('activity');
-			$table->string('workload');
-			$table->string('observation');
-			$table->boolean('editor');
+			$table->string('name')->nullable();
+			$table->string('rf')->nullable();
+			$table->string('cpf')->nullable();
+			$table->string('activity')->nullable();
+			$table->string('workload')->nullable();
+			$table->string('observation')->nullable();
+			$table->boolean('editor')->default(false);
 
 			// Tabelas associadas
 			// $table->integer('user_id');

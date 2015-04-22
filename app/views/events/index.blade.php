@@ -1,6 +1,8 @@
 <h1>Eventos</h1>
 
 <div class="col-md-12">
+  @include("general.search")
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,12 +16,12 @@
     <tbody>
       @forelse($events as $event)
         <tr>
-          <td>{{ $event->title }}</td>
-          <td>{{ $event->characterization }}</td>
-          <td>{{ $event->main_theme }}</td>
-          <td>{{ $event->kind }}</td>
+          <td>{{{ $event->title }}}</td>
+          <td>{{{ $event->characterization }}}</td>
+          <td>{{{ $event->main_theme }}}</td>
+          <td>{{{ $event->kind }}}</td>
           <td>
-            <a href="{{ URL::route('events.show', [ $event->id ]) }}">
+            <a href="{{{ URL::route('events.show', [ $event->id ]) }}}">
               <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
             </a>
           </td>
@@ -31,4 +33,6 @@
       @endforelse
     </tbody>
   </table>
+
+  {{{ $events->links() }}}
 </div>
