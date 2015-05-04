@@ -16,15 +16,17 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <div class="col-md-4">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" id="only_own" name="only_own" value="true">Somente de minha autoria 
-            </label>
+      @if(Auth::check())
+        <div class="form-group row">
+          <div class="col-md-4">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="only_own" name="only_own" value="true">Somente de minha autoria 
+              </label>
+            </div>
           </div>
         </div>
-      </div>
+      @endif
 
       <div class="form-group row">
         <div class="col-md-4">

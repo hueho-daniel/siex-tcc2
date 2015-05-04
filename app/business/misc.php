@@ -71,6 +71,45 @@ class Misc
 	}
 
 	/**
+	* Retorna array contendo as áreas temáticas
+	*/
+	public static function characterizations() {
+		return array(
+			'Atualização' => 'Atualização',
+			'Assembléia' => 'Assembléia',
+			'Campanha' => 'Campanha',
+			'Colóquio' => 'Colóquio',
+			'Conferência' => 'Conferência',
+			'Congresso' => 'Congresso',
+			'Debate' => 'Debate',
+			'Difusão Cultural' => 'Difusão Cultural',
+			'Economia Solidária' => 'Economia Solidária',
+			'Encontro' => 'Encontro',
+			'Espetáculo' => 'Espetáculo',
+			'Evento Esportivo' => 'Evento Esportivo',
+			'Exame de Proficiência' => 'Exame de Proficiência',
+			'Exposição/Feira' => 'Exposição/Feira',
+			'Fórum' => 'Fórum',
+			'Jornada' => 'Jornada',
+			'Laboratório' => 'Laboratório',
+			'Mesa Redonda' => 'Mesa Redonda',
+			'Oficina' => 'Oficina',
+			'Oficinas, Exposição e Concurso de Projetos' => 'Oficinas, Exposição e Concurso de Projetos',
+			'Painel' => 'Painel',
+			'Palestra' => 'Palestra',
+			'Palestra do Prof. James Leckman' => 'Palestra do Prof. James Leckman',
+			'Pré-Congresso' => 'Pré-Congresso',
+			'Reciclagem' => 'Reciclagem',
+			'Reunião Científica' => 'Reunião Científica',
+			'Seminário' => 'Seminário',
+			'Simpósio' => 'Simpósio',
+			'Teleconferência' => 'Teleconferência',
+			'Workshop' => 'Workshop',
+			'Iniciação' => 'Iniciação',
+			'Treinamento e qualificação Profissional' => 'Treinamento e qualificação Profissional');
+	}
+
+	/**
 	* Retorna array contendo os tipos de dados registrados e suas rotas
 	*/
 	public static function models() {

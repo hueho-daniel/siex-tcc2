@@ -31,16 +31,23 @@ class EventsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Event::$rules);
+		$data = array_merge(Input::except('how'), [ 'user_id' => Auth::user()->id ]);
+		$how = Input::get('how');
 
-		if ($validator->fails())
+		if ($how === 'send')
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			$data = array_merge($data, [ 'complete' => true ]);
+			$validator = Validator::make($data, Event::$rules);
+
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			}
 		}
 
-		Event::create($data);
+		$event = Event::create($data);
+		return Redirect::route('events.show', $event->id)->with('success', 'Criado com sucesso!');
 
-		return Redirect::route('events.index');
 	}
 
 	/**
@@ -52,6 +59,11 @@ class EventsController extends \BaseController {
 	public function show($id)
 	{
 		$event = Event::findOrFail($id);
+
+		if(!$event->complete && $event->user_id === Auth::user()->id)
+		{
+			return Redirect::route('events.edit', $event->id);
+		}
 
 		$this->layout->content = View::make('events.show', compact('event'));
 	}
@@ -66,6 +78,11 @@ class EventsController extends \BaseController {
 	{
 		$event = Event::find($id);
 
+		if($event->complete || $event->user_id !== Auth::user()->id)
+		{
+			return Redirect::route('events.show', $event->id)->with('message', 'Edição não autorizada!');
+		}
+
 		$this->layout->content = View::make('events.edit', compact('event'));
 	}
 
@@ -79,16 +96,27 @@ class EventsController extends \BaseController {
 	{
 		$event = Event::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Event::$rules);
-
-		if ($validator->fails())
+		if($event->complete || $event->user_id !== Auth::user()->id)
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::route('events.show', $event->id)->with('message', 'Edição não autorizada!');
+		}
+
+		$data = array_merge(Input::except('how'));
+		$how = Input::get('how');
+		
+		if ($how === 'send')
+		{
+			$data = array_merge($data, [ 'complete' => true ]);
+			$validator = Validator::make($data, Event::$rules);
+
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			}
 		}
 
 		$event->update($data);
-
-		return Redirect::route('events.index');
+		return Redirect::route('events.show', $event->id)->with('success', 'Salvo com sucesso!');;
 	}
 
 	/**

@@ -50,11 +50,8 @@ class BaseController extends Controller {
 
 	public function __construct()
 	{
-		// Logar usuário padrão automaticamente
-		$this->beforeFilter(function(){
-			$user = User::find(1);
-			Auth::login($user);
-		});
+		// Exigir login para páginas privadas
+		$this->beforeFilter('auth', [ 'except' => [ 'index', 'show', 'login_page', 'login', 'logout' ] ]);
 	}
 
 }

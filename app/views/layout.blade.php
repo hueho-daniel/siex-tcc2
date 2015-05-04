@@ -49,7 +49,18 @@
         @endforeach
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a>Olá, {{{ preg_split("#\s+#", Auth::user()->name, 1, PREG_SPLIT_NO_EMPTY)[0] }}}</a></li>
+        @if(Auth::check())
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              Olá, {{{ preg_split("#\s+#", Auth::user()->name, 1, PREG_SPLIT_NO_EMPTY)[0] }}} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/logout">Sair</a></li>
+            </ul>
+          </li>
+        @else
+          <li><a href="/login">Fazer login</a></li>
+        @endif
         <li><a href="/about">Sobre</a></li>
       </ul>
     </div><!--/.nav-collapse -->

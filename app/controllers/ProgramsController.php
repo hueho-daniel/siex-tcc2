@@ -122,8 +122,6 @@ class ProgramsController extends \BaseController {
 			}
 		}
 
-		//dd($data);
-
 		$program->update($data);
 		return Redirect::route('programs.show', $program->id)->with('success', 'Salvo com sucesso!');;
 	}
