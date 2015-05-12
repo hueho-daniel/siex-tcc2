@@ -59,7 +59,15 @@
             </ul>
           </li>
         @else
-          <li><a href="/login">Fazer login</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              Olá, anônimo!<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/login">Fazer login</a></li>
+              <li><a href="/signup">Fazer cadastro</a></li>
+            </ul>
+          </li>
         @endif
         <li><a href="/about">Sobre</a></li>
       </ul>
@@ -75,7 +83,11 @@
   @if(Session::has('success'))
     <div class="alert alert-success" role="alert">{{{ Session::get('success') }}}</div>
   @endif
-  
+
+  @foreach($errors->all() as $message)
+    <div class="alert alert-danger" role="alert">{{{ $message }}}</div>
+  @endforeach
+
   {{ $content }}
 </div>
 

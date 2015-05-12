@@ -41,6 +41,36 @@ class HomeController extends \BaseController {
   }
 
   /**
+   * Cadastro do sistema - form inicial
+   *
+   * @return Response
+   */
+  public function signup_page()
+  {
+    $this->layout->content = View::make('signup');
+  }
+
+  /**
+   * Cadastro do sistema - ação de signup
+   *
+   * @return Redirect
+   */
+  public function signup()
+  {
+    $validator = Validator::make(Input::all(), User::$rules);
+
+    if ($validator->fails())
+    {
+      return Redirect::back()->withErrors($validator)->withInput();
+    }
+
+    $user = User::create(Input::except('password_confirmation'));
+    Auth::login($user);
+
+    return Redirect::intended();
+  }
+
+  /**
    * Login do sistema - form inicial
    *
    * @return Redirect

@@ -51,7 +51,7 @@ class BaseController extends Controller {
 	public function __construct()
 	{
 		// Exigir login para páginas privadas
-		$this->beforeFilter('auth', [ 'except' => [ 'index', 'show', 'login_page', 'login', 'logout' ] ]);
+		$this->beforeFilter('auth', [ 'except' => [ 'index', 'show', 'login_page', 'login', 'signup_page', 'signup', 'logout' ] ]);
 	}
 
 }
