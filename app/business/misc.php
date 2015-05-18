@@ -114,9 +114,34 @@ class Misc
 	*/
 	public static function models() {
 		return array(
-			'/projects' => 'Projetos',
+			//'/projects' => 'Projetos',
       '/programs' => 'Programas',
-      '/courses' => 'Cursos',
+      //'/courses' => 'Cursos',
       '/events' => 'Eventos');
+	}
+
+	/**
+	* Retorna array contendo os campos necessários no formulário de eventos/cursos para contato
+	*/
+	public static function ev_cr_contact_fields() {
+		return array(
+			'main_coordinator_name' => 'Coordenador (Responsável Técnico Científico)',
+      'main_coordinator_cpf' => 'CPF do Coordenardor',
+      'main_coordinator_secretary' => 'Secretaria (Suporte Administrativo)',
+			'main_coordinator_secretary_cel' => 'Celular Secretaria',
+			'main_coordinator_first_phone' => 'Telefone 1',
+			'main_coordinator_second_phone' => 'Telefone 2',
+			'main_coordinator_fax' => 'Fax',
+			'main_coordinator_cel' => 'Celular',
+			'main_coordinator_email' => 'Email',
+			'main_coordinator_address_street' => 'Endereço',
+			'main_coordinator_address_complement' => 'Complemento',
+			'main_coordinator_address_number' => 'Número',
+			'main_coordinator_address_district' => 'Bairro',
+			'main_coordinator_address_city' => 'Cidade',
+			'main_coordinator_address_state' => 'Estado',
+			'main_coordinator_address_postal_code' => 'CEP',
+			'department_chief' => '	Chefe Departamento ou Diretor(a) Acadêmico',
+			'discipline_chief' => '	Chefe Disciplina ou Diretor(a) Acadêmico');
 	}
 }

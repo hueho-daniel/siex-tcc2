@@ -46,17 +46,6 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="campus">Campus</label>
-    <div class="col-md-4">
-      @if($readonly)
-        <input id="campus" name="campus" readonly value="{{{ $object->campus }}}" class="form-control input-md"/> 
-      @else
-        {{ Form::select('campus', Misc::campi(), isset($object) ? $object->campus : null, [ 'class' => 'form-control']) }}
-      @endif
-    </div>
-  </div>
-
-  <div class="form-group">
     <label class="col-md-4 control-label" for="estimated_audience">Público atíngido/mês</label>  
     <div class="col-md-4">
       <input id="estimated_audience" name="estimated_audience" {{{ $readonly ? 'readonly' : '' }}} value="{{{ isset($object) ? $object->estimated_audience : "" }}}"
