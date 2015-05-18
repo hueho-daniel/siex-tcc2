@@ -2,7 +2,7 @@
 <hr>
 <div class="col-md-12">
   <form enctype="multipart/form-data" class="form-horizontal" action="/programs" method="post">
-    @include('general.form_header', [ 'readonly' => false, 'recorded_at' => Carbon::now()->format('m/d/Y') ])
+    @include('general.form_header', [ 'readonly' => false, 'recorded_at' => Carbon::now()->format('d/m/Y') ])
     @include('general.contact', [ 'readonly' => false, 'object' => Auth::user() ])
     @include('general.pg_pj_info', [ 'readonly' => false, 'label' => 'programa' ])
 
