@@ -18,9 +18,14 @@ Route::post('/login', [ 'as' => 'login', 'uses' => 'HomeController@login' ]);
 Route::get('/signup', [ 'as' => 'signup_page', 'uses' => 'HomeController@signup_page' ]);
 Route::post('/signup', [ 'as' => 'signup', 'uses' => 'HomeController@signup' ]);
 Route::get('/logout', [ 'as' => 'logout', 'uses' => 'HomeController@logout' ]);
+Route::get('/users', [ 'as' => 'users', 'uses' => 'HomeController@users' ]);
 
+Route::get('/programs/{id}/file', 'ProgramsController@showFile');
 Route::resource('programs', 'ProgramsController');
+
+Route::get('/projects/{id}/file', 'ProjectsController@showFile');
 Route::resource('projects',	'ProjectsController');
+
 Route::resource('courses', 'CoursesController');
 Route::resource('events', 'EventsController');
 

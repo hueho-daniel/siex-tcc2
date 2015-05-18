@@ -69,7 +69,6 @@
             </ul>
           </li>
         @endif
-        <li><a href="/about">Sobre</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

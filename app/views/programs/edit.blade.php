@@ -1,7 +1,7 @@
 <h1>Editar Programa</h1>
 <hr>
 <div class="col-md-12">
-  {{ Form::open([ 'route' => [ 'programs.update', $program->id ], 'class' => 'form-horizontal' ]) }}
+  {{ Form::open([ 'files' => true, 'route' => [ 'programs.update', $program->id ], 'class' => 'form-horizontal' ]) }}
     <input type="hidden" name="_method" id="_method" value="PUT"/> 
     @include('general.form_header', [ 'readonly' => false, 'recorded_at' => $program->recorded_at ])
     @include('general.contact', [ 'readonly' => false, 'object' => $program ])

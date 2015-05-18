@@ -82,4 +82,16 @@ class HomeController extends \BaseController {
     return Redirect::to('/')->with('success', 'Deslogado com sucesso');
   }
 
+  /**
+   * Listagem de usuários - para criar coordenadores
+   *
+   * @return User
+   */
+  public function users()
+  {
+    $query = Input::get('q');
+    return User::where('name', 'like', "%$query%")->order('name')->limit(10);
+  }
+
+
 }

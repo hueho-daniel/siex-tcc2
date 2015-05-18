@@ -1,8 +1,8 @@
 <h1>Criar novo Programa</h1>
 <hr>
 <div class="col-md-12">
-  <form class="form-horizontal" action="/programs" method="post">
-    @include('general.form_header', [ 'readonly' => false, 'recorded_at' => Carbon::now()->format('d/m/Y') ])
+  <form enctype="multipart/form-data" class="form-horizontal" action="/programs" method="post">
+    @include('general.form_header', [ 'readonly' => false, 'recorded_at' => Carbon::now()->format('m/d/Y') ])
     @include('general.contact', [ 'readonly' => false, 'object' => Auth::user() ])
     @include('general.pg_pj_info', [ 'readonly' => false, 'label' => 'programa' ])
 

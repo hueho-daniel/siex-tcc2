@@ -30,6 +30,19 @@
   </div>
 
   <div class="form-group">
+    <label class="col-md-4 control-label" for="full_content">Arquivo completo</label>  
+    <div class="col-md-4">
+      @if(isset($object->full_content))
+        <a href="file">Download {{{ $object->full_content_file_name }}}</a>
+      @endif
+
+      @if(!$readonly)
+        <input id="full_content" name="full_content" class="form-control" type="file">
+      @endif
+    </div>
+  </div>
+
+  <div class="form-group">
     <label class="col-md-4 control-label" for="student_count">Quantidade de alunos</label>  
     <div class="col-md-4">
       <input id="student_count" name="student_count" {{{ $readonly ? 'readonly' : '' }}} value="{{{ isset($object) ? $object->student_count : "" }}}"

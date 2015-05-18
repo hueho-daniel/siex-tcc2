@@ -31,6 +31,9 @@ class CreateProjectsTable extends Migration {
 			// Dados do projeto
 			$table->string('title')->nullable();
 			$table->string('theme')->nullable();
+			$table->string('full_content_file_name')->nullable();
+			$table->string('full_content_type')->nullable();
+			$table->binary('full_content')->nullable();
 			$table->longText('description')->nullable();
 			$table->string('file_name')->nullable();
 			$table->integer('student_count')->nullable();

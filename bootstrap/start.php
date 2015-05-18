@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('linux-yxkx', 'Mac-Air-DMA1.local'),
+	'local' => array('linux-yxkx', 'Mac-Air-DMA1.local', 'ubuntu'),
 
 ));
 
