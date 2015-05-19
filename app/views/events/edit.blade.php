@@ -4,6 +4,7 @@
   {{ Form::open([ 'route' => [ 'events.update', $event->id ], 'class' => 'form-horizontal' ]) }}
     <input type="hidden" name="_method" id="_method" value="PUT"/> 
     @include('general.form_header', [ 'readonly' => false, 'recorded_at' => $event->recorded_at ])
+    @include('general.ev_cr_team'), [ 'readonly' => false, 'object' => $event ])
     @include('general.ev_cr_contact', [ 'readonly' => false, 'object' => $event ])
     @include('general.ev_cr_info', [ 'readonly' => false, 'label' => 'evento', 'object' => $event ])
 

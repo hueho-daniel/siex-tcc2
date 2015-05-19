@@ -18,6 +18,8 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	// Don't forget to fill this array
 	protected $guarded = [];
 
+	protected $visible = ['name', 'cpf'];
+
 	public function projects() {
 		return $this->hasMany("Project");
 	}

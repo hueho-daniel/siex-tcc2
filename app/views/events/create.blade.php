@@ -3,6 +3,7 @@
 <div class="col-md-12">
   <form class="form-horizontal" action="/events" method="post">
     @include('general.form_header', [ 'readonly' => false, 'recorded_at' => Carbon::now()->format('d/m/Y') ])
+    @include('general.ev_cr_team'), [ 'readonly' => false ])
     @include('general.ev_cr_contact', [ 'readonly' => false ])
     @include('general.ev_cr_info', [ 'readonly' => false, 'label' => 'Evento' ])
 
