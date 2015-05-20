@@ -64,7 +64,9 @@ class HomeController extends \BaseController {
       return Redirect::back()->withErrors($validator)->withInput();
     }
 
-    $user = User::create(Input::except('password_confirmation'));
+    $data = Input::except('password_confirmation');
+    $data['password'] = Hash::make($data['password']);
+    $user = User::create($data);
     Auth::login($user);
 
     return Redirect::intended();
@@ -90,7 +92,7 @@ class HomeController extends \BaseController {
   public function users()
   {
     $query = Input::get('q');
-    return User::where('name', 'like', "%$query%")->order('name')->limit(10);
+    return User::where('name', 'ilike', "%$query%")->orderBy('name')->limit(10)->get();
   }
 
 

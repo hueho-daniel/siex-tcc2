@@ -3,7 +3,7 @@
 <div class="col-md-12">
   <form class="form-horizontal" action="/none" method="get">
     @include('general.form_header', [ 'readonly' => true, 'recorded_at' => $event->recorded_at ])
-    @include('general.ev_cr_team'), [ 'readonly' => true, 'object' => $event ])
+    @include('general.ev_cr_team', [ 'readonly' => true, 'object' => $event ])
     @include('general.ev_cr_contact', [ 'readonly' => true, 'object' => $event ])
     @include('general.ev_cr_info', [ 'readonly' => true, 'label' => 'evento', 'object' => $event ])
   </form>

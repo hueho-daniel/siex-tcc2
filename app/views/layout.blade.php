@@ -19,7 +19,10 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="/js/bootstrap-datepicker.min.js"></script>
+  <script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
 
   <!-- CSS da aplicação -->
   <link rel="stylesheet" href="/css/main.css">

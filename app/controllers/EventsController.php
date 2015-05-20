@@ -31,7 +31,7 @@ class EventsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$data = array_merge(Input::except('how'), [ 'user_id' => Auth::user()->id ]);
+		$data = array_merge(Input::except('how', 'status', 'coordinator'), [ 'user_id' => Auth::user()->id ]);
 		$how = Input::get('how');
 
 		if ($how === 'send')
@@ -46,6 +46,8 @@ class EventsController extends \BaseController {
 		}
 
 		$event = Event::create($data);
+		$event->updateCoordinators(Input::get('coordinator'));
+
 		return Redirect::route('events.show', $event->id)->with('success', 'Criado com sucesso!');
 
 	}
@@ -101,7 +103,7 @@ class EventsController extends \BaseController {
 			return Redirect::route('events.show', $event->id)->with('message', 'Edição não autorizada!');
 		}
 
-		$data = array_merge(Input::except('how'));
+		$data = array_merge(Input::except('how', 'status', 'coordinator'));
 		$how = Input::get('how');
 		
 		if ($how === 'send')
@@ -116,6 +118,8 @@ class EventsController extends \BaseController {
 		}
 
 		$event->update($data);
+		$event->updateCoordinators(Input::get('coordinator'));
+
 		return Redirect::route('events.show', $event->id)->with('success', 'Salvo com sucesso!');;
 	}
 

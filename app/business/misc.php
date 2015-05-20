@@ -71,6 +71,24 @@ class Misc
 	}
 
 	/**
+	* Retorna array contendo os tipos de eventos
+	*/
+	public static function kinds() {
+		return array(
+			'EaD' => 'EaD',
+			'Presencial' => 'Presencial');
+	}
+
+	/**
+	* Retorna array contendo os tipos de eventos
+	*/
+	public static function knowledge_areas() {
+		return array(
+			'Medicina' => 'Medicina',
+			'Outros' => 'Outros');
+	}
+
+	/**
 	* Retorna array contendo as áreas temáticas
 	*/
 	public static function characterizations() {
