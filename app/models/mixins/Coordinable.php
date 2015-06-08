@@ -5,6 +5,14 @@ trait Coordinable {
 		return $this->morphMany('Coordinator', 'coordinable');
 	}
 
+  /**
+   * Recebe um array retirado do formulário de edição da
+   * entidade, representando os dados de coordenadores,
+   * converte o array em um formato que pode ser processado
+   * e passado como argumento para a criação de coordenadores
+   * , e salva no banco
+   *
+   */
   public function updateCoordinators($data) {
     $formatted = [];
     foreach ($data as $field => $values) {

@@ -28,6 +28,8 @@ class BaseController extends Controller {
 		$theme = Input::get('theme');
 		$only_own = Input::get('only_own');
 
+		// Retorna apenas os itens publicados de outros usuários
+		// e todos os itens do usuário logado
 		$result = $model::complete(true);
 
 		if ($title !== "")
